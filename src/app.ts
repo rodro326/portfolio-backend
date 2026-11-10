@@ -1,6 +1,10 @@
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import { ContactRoutes } from "./modules/contact/contact.route";
+import { ProjectRoutes } from "./modules/project/project.route";
+import { SkillRoutes } from "./modules/skill/skill.route";
+import { ExperienceRoutes } from "./modules/experience/experience.route";
+import { ProfileRoutes } from "./modules/profile/profile.route";
 
 const app: Application = express();
 
@@ -9,6 +13,11 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/v1/contact", ContactRoutes);
+app.use("/api/v1/projects", ProjectRoutes);
+app.use("/api/v1/skills", SkillRoutes);
+app.use("/api/v1/experiences", ExperienceRoutes);
+app.use("/api/v1/profile", ProfileRoutes);
+
 // Test Route
 app.get("/", (req: Request, res: Response) => {
   res.send("Portfolio Backend is running!");
