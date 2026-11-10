@@ -42,7 +42,36 @@ const getAllProjects = async (
     });
   }
 };
+const getSingleProject = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const result = await ProjectServices.getSingleProject(
+      req.params.id as string
+    );
 
+    if (!result) {
+      res.status(404).json({
+        success: false,
+        message: "Project not found!",
+      });
+      return;
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Project retrieved successfully!",
+      data: result,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to retrieve project!",
+      error,
+    });
+  }
+};
 const updateProject = async (
   req: Request,
   res: Response
@@ -109,4 +138,5 @@ export const ProjectControllers = {
   getAllProjects,
   updateProject,
   deleteProject,
+  getSingleProject,
 };

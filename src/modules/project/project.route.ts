@@ -11,13 +11,16 @@ router.post(
   ProjectControllers.createProject
 );
 
+router.get("/", ProjectControllers.getAllProjects);
+
+router.get("/:id", ProjectControllers.getSingleProject);
+
 router.put(
   "/:id",
   validateRequest(ProjectValidations.updateProjectValidationSchema),
   ProjectControllers.updateProject
 );
-router.get("/", ProjectControllers.getAllProjects);
-router.put("/:id", ProjectControllers.updateProject);
+
 router.delete("/:id", ProjectControllers.deleteProject);
 
 export const ProjectRoutes = router;

@@ -9,6 +9,10 @@ const getAllProjects = async () => {
   const result = await Project.find().sort({ createdAt: -1 });
   return result;
 };
+const getSingleProject = async (id: string) => {
+  const result = await Project.findById(id);
+  return result;
+};
 
 const updateProject = async (
   id: string,
@@ -32,4 +36,5 @@ export const ProjectServices = {
   getAllProjects,
   updateProject,
   deleteProject,
+  getSingleProject,
 };
